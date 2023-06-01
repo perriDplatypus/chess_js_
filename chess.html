@@ -15,7 +15,7 @@
 			font-family: sans-serif;
 		}
 
-		div *{
+		div * {
 			padding: 0;
 			margin: 0;
 			box-sizing: border-box;
@@ -74,6 +74,61 @@
 			font-size: 30pt;
 			cursor: pointer;
 			z-index: 1;
+		}
+
+		.gamecell:hover {
+			color: #fff;
+			background: rgba(39, 88, 228, 0.7);
+			z-index: 1;
+			transform: translate(10px, -10px);
+			animation: neonBlueText 1.5s ease-in-out infinite alternate;
+		}
+
+		.grey {
+			background: rgba(128, 128, 128, 0.8);
+		}
+
+		.green {
+			background: rgb(65, 161, 73) !important;
+		}
+
+		.neonblue_txt {
+			animation: neonBlueText 1.5s ease-in-out infinite alternate;
+		}
+
+		.neonorange_txt {
+			animation: neonOrangeText 1.5s ease-in-out infinite alternate;
+		}
+
+		.neongreen_txt {
+			animation: neonGreenText 1.5s ease-in-out infinite alternate;
+		}
+
+		@keyframes neonBlueText {
+			from {
+				text-shadow: 0px 0px 10px #fff, 0px 0px 20px #fff, 0px 0px 30px #fff, 0px 0px 40px #228dff, 0px 0px 70px #228dff, 0px 0px 80px #228dff, 0px 0px 100px #228dff, 0px 0px 150px #228dff;
+			}
+			to {
+				text-shadow: 0px 0px 5px #fff, 0px 0px 10px #fff, 0px 0px 15px #fff, 0px 0px 20px #228dff, 0px 0px 35px #228dff, 0px 0px 40px #228dff, 0px 0px 50px #228dff, 0px 0px 75px #228dff;
+			}
+		}
+
+		@keyframes neonOrangeText {
+			from {
+				text-shadow: 0px 0px 10px #fff, 0px 0px 20px #fff, 0px 0px 30px #fff, 0px 0px 40px #ff9900, 0px 0px 70px #ff9900, 0px 0px 80px #ff9900, 0px 0px 100px #ff9900, 0px 0px 150px #ff9900;
+			}
+			to {
+				text-shadow: 0px 0px 5px #fff, 0px 0px 10px #fff, 0px 0px 15px #fff, 0px 0px 20px #ff9900, 0px 0px 35px #ff9900, 0px 0px 40px #ff9900, 0px 0px 50px #ff9900, 0px 0px 75px #ff9900;
+			}
+		}
+
+		@keyframes neonGreenText {
+			from {
+				text-shadow: 0px 0px 10px #fff, 0px 0px 20px #fff, 0px 0px 30px #fff, 0px 0px 40px #b6ff00, 0px 0px 70px #b6ff00, 0px 0px 80px #b6ff00, 0px 0px 100px #b6ff00, 0px 0px 150px #b6ff00;
+			}
+			to {
+				text-shadow: 0px 0px 5px #fff, 0px 0px 10px #fff, 0px 0px 15px #fff, 0px 0px 20px #b6ff00, 0px 0px 35px #b6ff00, 0px 0px 40px #b6ff00, 0px 0px 50px #b6ff00, 0px 0px 75px #b6ff00;
+			}
 		}
 	</style>
 	<title>Chess JS DEV</title>
