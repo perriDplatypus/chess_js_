@@ -274,7 +274,100 @@ let main = {
 					options = (main.methods.options(startPoint, coordinates, main.variables.pieces[selectedPiece].type)).slice(0);
 					main.variables.highlighted = options.slice(0);
 					main.methods.toggleHighlight(options);
+
 					break;
+
+				case 'w_queen':
+					c1 = main.methods.w_options()
+			}
+		},
+
+		w_options: function (position, coordinates) {
+			let flag = false;
+			coordinates = coordinates.map(function (val) {
+				return (parseInt(position.x) + parseInt(val.x) + '_' + parseInt(position.y) + parseInt(val.y));
+			}).filter(val => {
+				if (!flag) {
+					if ($('#' + val).attr('chess') == 'null') {
+						console.log(val);
+					} else if (($('#' + val).attr('chess')).slice(0, 1) == 'b') {
+						flag = true;
+						console.log(val);
+						return val;
+					} else if (($('#' + val).attr('chess')).slice(0, 1) == 'w') {
+						console.log(val + '-3');
+						flag = true;
+					}
+				}
+			});
+			return coordinates;
+		},
+
+		b_options: function (position, coordinates) {
+			let flag = false;
+			coordinates = coordinates.map(function (val) {
+				return (parseInt(position.x) + parseInt(val.x) + '_' + parseInt(position.y) + parseInt(val.y));
+			}).filter(val => {
+				if (!flag) {
+					if ($('#' + val).attr('chess') == 'null') {
+						console.log(val);
+					} else if (($('#' + val).attr('chess')).slice(0, 1) == 'b') {
+						flag = true;
+						return val;
+					} else if (($('#' + val).attr('chess')).slice(0, 1) == 'w') {
+						flag = true;
+					}
+				}
+			});
+			return coordinates;
+		},
+
+		capture: function (target) {
+			let selectedPiece = {
+				name: $('#' + main.variables.selectedPiece).attr('chess'),
+				id: main.variables.selectedPiece
+			};
+			// new cell
+			$('#' + target.id).html(main.variables.pieces[selectedPiece].img);
+			$('#' + target.id).attr('chess', selectedPiece);
+			// old cell
+			$('#' + selectedPiece.id).html('');
+			$('#' + selectedPiece.id).attr('chess', 'null');
+			// moved piece
+			main.variables.pieces[selectedPiece.name].position = target.id;
+			main.variables.pieces[selectedPiece.name].moved = true;
+			// captured piece
+			main.variables.pieces[target.name].captured = true;
+		},
+
+		move: function (target) {
+			let selectedPiece = $('#' + main.variables.selectedPiece).attr('chess');
+			// new cell
+			$('#' + target.id).html(main.variables.pieces[selectedPiece].img);
+			$('#' + target.id).attr('chess', selectedPiece);
+			// old cell
+			$('#' + main.variables.selectedPiece).html('');
+			$('#' + main.variables.selectedPiece).attr('chess', 'null');
+			main.variables.pieces[selectedPiece].position = target.id;
+			main.variables.pieces[selectedPiece].moved = true;
+		},
+
+		endTurn: function () {
+			if (main.variables.turn = 'w') {
+				main.variables.turn = 'b';
+
+				// toggle highlighted coordinates
+				main.methods.toggleHighlight(main.variables.highlighted);
+				main.variables.highlighted.length = 0;
+				// no piece is no longer selected
+				main.variables.selectedPiece = '';
+
+				$('#turn').html("Black's Move");
+				$('#turn').addClass('turnHighlight');
+
+				window.setTimeout(function () {
+					$('#turn').removeClass('turnHighlight');
+				}, 1500);
 			}
 		},
 
